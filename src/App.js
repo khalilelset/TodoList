@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import LoginP from "./Pages/LoginP";
+import TodoList from "./Pages/TodoList";
+import NotFound from "./Pages/NotFound";
+export default function App() {
+  const email = localStorage.getItem("email");
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<LoginP />} />
+      {email !== null ? <Route path="Todo" element={<TodoList />} /> : <></>}
+      <Route path="/*" element={<NotFound />} />
+    </Routes>
   );
 }
-
-export default App;
